@@ -20,8 +20,53 @@ public class EntradaDatos {
     }
 
     public String pedirCodigo(){
-        System.out.println("Ingrese el código del curso (E.j.: CC2008)[máx 6 caractéres]: ");
+        System.out.println("Ingrese el código del curso (Ej.: CC2008)[máx 6 caractéres]: ");
         String codigo = scan.nextLine();
         return codigo;
     }
+
+    public String pedirHorario(){
+        System.out.println("Ingrese la hora de inicio del curso (Ej.: 13:00, 10:00): ");
+        String horario = scan.nextLine();
+        return horario;
+    }
+
+    public int pedirPeriodos(){
+        System.out.println("¿Cuántos periodos (de 60 min) dura la clase? (Ej.: 2): ");
+        int periodos = scan.nextInt();
+        scan.nextLine();
+        return periodos;
+    }
+
+    public int pedirEstudiantes(){
+        System.out.println("¿Cuántos estudiantes reciben el curso?: ");
+        int estudiantes = scan.nextInt();
+        scan.nextLine();
+        return estudiantes;
+    }
+
+    public String pedirNombreProfesor(){
+        System.out.println("Ingrese el nombre del profesor encargado del curso: ");
+        String nombre = scan.nextLine();
+        return nombre;
+    }
+
+    public String pedirCarne(){
+        System.out.println("Ingrese el carné del profesor encargado del curso: ");
+        String carne = scan.nextLine();
+        return carne;
+    }
+
+    public String pedirCorreo(){
+        System.out.println("Ingrese el correo del profesor encargado del curso (Ej.: profesor@uvg.edu.gt): ");
+        String correo = scan.nextLine();
+        return correo;
+    }
+
+    public String pedirTelefono(){
+        System.out.println("Ingrese el número de teléfono del profesor (Ej.: 1234-5678): ");
+        String telefono = scan.nextLine();
+        return telefono;
+    }
+
 }
