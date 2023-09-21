@@ -69,4 +69,14 @@ public class EntradaDatos {
         return telefono;
     }
 
+    public int pedirDia(){
+        System.out.println("Qué día se impartirá el curso (ingrese el número): "+
+                                "\n1. Lunes"+
+                                "\n2. Martes"+
+                                "\n3. Miércoles" +
+                                "\n4. Jueves"+
+                                "\n5. Viernes");
+        int op = scan.nextInt();
+        return op;
+    }
 }
