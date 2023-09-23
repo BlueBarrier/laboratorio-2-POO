@@ -12,11 +12,11 @@
 public class Curso {
     // atributos
     private Profesor profesor;
-    private String nombre, codigo, horario;
-    private int cantPeriodos, cantEstudiantes;
+    private String nombre, codigo;
+    private int cantPeriodos, cantEstudiantes, horario;
 
     // constructor
-    public Curso(String nombre, String codigo, String horario, int cantPeriodos, int cantEstudiantes, Profesor profesor){
+    public Curso(String nombre, String codigo, int horario, int cantPeriodos, int cantEstudiantes, Profesor profesor){
         this.nombre = nombre;
         this.codigo = codigo;
         this.horario = horario;
@@ -39,8 +39,8 @@ public class Curso {
         this.codigo = codigo;
     }
 
-    public String getHorario(){return horario;}
-    public void setHorario(String horario){this.horario = horario;}
+    public int getHorario(){return horario;}
+    public void setHorario(int horario){this.horario = horario;}
 
     public int getCantPeriodos() {
         return cantPeriodos;
