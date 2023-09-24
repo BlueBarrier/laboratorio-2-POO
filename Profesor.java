@@ -5,9 +5,9 @@
  * 
  * @author: Erick Barrera
  * @description: clase que almacena los datos de profesores
- * @version: 1.0
+ * @version: 1.1
  * @created: 21/09/23
- * @last_modified: 21/09/23
+ * @last_modified: 23/09/23
  */
 public class Profesor{
     // atributos
@@ -45,5 +45,13 @@ public class Profesor{
     }
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    @Override 
+    public String toString(){
+        return "Profesor: "+ nombre+
+                "\n carne: "+carne+
+                "\n correo: "+correo+
+                "\n teléfono: "+telefono;
     }
 }

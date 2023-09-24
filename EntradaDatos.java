@@ -33,7 +33,7 @@ public class EntradaDatos {
     }
 
     public int pedirHorario(){
-        System.out.println("Ingrese la hora de inicio del curso (Ej.: 13, 10, 07): ");
+        System.out.println("Ingrese la hora de inicio del curso (Salón disponible de 07 a 21 horas) (Ej.: 13, 10, 07): ");
         String horario = scan.nextLine().trim();
         int hora = 0;
         try {
@@ -65,6 +65,7 @@ public class EntradaDatos {
             estudiantes = Integer.parseInt(	estudiantesString);
             if(estudiantes>capacity && estudiantes < capacity*2){
                 System.out.println("ADVERTENCIA: ESTA SOBREPASANDO LA CAPACIDAD DEL SALÓN!!"+"\nCapacidad: "+capacity);
+                return estudiantes;
             }else if(estudiantes >= capacity*2){
                 System.out.println("ERROR: HA EXCEDIDO LA CAPACIDAD DEL SALÓN POR MÁS DEL DOBLE"+ "\nCapacidad: "+capacity);
                 pedirEstudiantes(capacity);
@@ -188,5 +189,41 @@ public class EntradaDatos {
             buscarDia();
         }
         return op;
+    }
+
+    public int preguntarCambioDia(){
+        int diaIndex = 0;
+        System.out.println("¿Desea cambiar de día?"+
+                                "\n1. Sí"+
+                                "\n2. No");
+        String opcioString = scan.nextLine().trim().toLowerCase();
+        try {
+            int opcion = Integer.parseInt(opcioString);
+            if(opcion == 1){
+                System.out.println("¿Cuál es el nuevo día?");
+                diaIndex = buscarDia();
+                return diaIndex;
+            }else{return -1;}
+        } catch (NullPointerException | NumberFormatException e) {
+            System.out.println("INGRESE UNA OPCIÓN VÁLIDA");
+            preguntarCambioDia();
+        }
+        return diaIndex;
+    }
+
+    public int siNo(){
+        System.out.println("¿Esta seguro de crear un nuevo semestre?"+
+                                "\n1. Sí"+
+                                "\n2. No");
+        String opcString = scan.nextLine().trim().toLowerCase();
+        try {
+            int opcion = Integer.parseInt(opcString);
+            if(opcion > 2 || opcion < 1){System.out.println("Ingrese 1 o 2"); siNo();}
+            return opcion;
+        } catch (NullPointerException | NumberFormatException e) {
+            System.out.println("INGRESE UNA OPCIÓN VÁLIDA");
+            siNo();
+        }
+        return 0;
     }
 }
