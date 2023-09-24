@@ -9,7 +9,6 @@
  * @created: 21/09/23
  * @last_modified: 22/09/23
  */
-import java.io.IOException;
 import java.util.Scanner;
 public class EntradaDatos {
     private Scanner scan = new Scanner(System.in); // importar y crear objeto scanner
@@ -25,7 +24,7 @@ public class EntradaDatos {
         String codigo = "";
         try {
             codigo = scan.nextLine().trim();
-            if(codigo.length()>6){clean();System.out.println("Código muy largo!!"); pedirCodigo();}
+            if(codigo.length()>6){System.out.println("Código muy largo!!"); pedirCodigo();}
         } catch (NullPointerException e) {
             pedirCodigo();
         }
@@ -51,8 +50,15 @@ public class EntradaDatos {
 
     public int pedirPeriodos(){
         System.out.println("¿Cuántos periodos (de 60 min) dura la clase? (Ej.: 2): ");
-        int periodos = scan.nextInt();
-        scan.nextLine();
+        int periodos = 0;
+        try {
+            periodos = scan.nextInt();
+            scan.nextLine();
+            return periodos;
+        } catch (NullPointerException | NumberFormatException e) {
+            System.out.println("Ingrese un valor válido.");
+            pedirPeriodos();
+        }
         return periodos;
     }
 
@@ -80,26 +86,61 @@ public class EntradaDatos {
 
     public String pedirNombreProfesor(){
         System.out.println("Ingrese el nombre del profesor encargado del curso: ");
-        String nombre = scan.nextLine();
-        return nombre;
+        try {
+            String nombre = scan.nextLine().trim();
+            return nombre;
+        } catch (NullPointerException e) {
+            System.out.println("Ingrese un valor");
+            pedirNombreProfesor();
+        }
+        return "";
     }
 
     public String pedirCarne(){
         System.out.println("Ingrese el carné del profesor encargado del curso: ");
-        String carne = scan.nextLine();
-        return carne;
+        try {
+            String carne = scan.nextLine();
+            carne = scan.nextLine().trim().toLowerCase();
+            if(carne.length()>6){System.out.println("Carné muy largo!!"); pedirCarne();}
+            return carne;
+        } catch (NullPointerException e) {
+            pedirCarne();
+        }
+        return "";
     }
 
     public String pedirCorreo(){
         System.out.println("Ingrese el correo del profesor encargado del curso (Ej.: profesor@uvg.edu.gt): ");
-        String correo = scan.nextLine();
-        return correo;
+        try {
+            String correo = scan.nextLine().trim().toLowerCase();
+            if (correo.contains("@") && correo.contains("uvg.edu.gt")) {
+                return correo;
+            }else{
+                System.out.println("Correo no válido para la institución UVG");
+                pedirCorreo();
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Ingrese un valor válido");
+            pedirCorreo();
+        }
+        return "";
     }
 
     public String pedirTelefono(){
         System.out.println("Ingrese el número de teléfono del profesor (Ej.: 1234-5678): ");
-        String telefono = scan.nextLine();
-        return telefono;
+        try {
+            String telefono = scan.nextLine().trim().toLowerCase();
+            if (telefono.contains("-") && telefono.length()==9) {
+                return telefono;
+            }else{
+                System.out.println("Ingrese el separador \"-\"  o compruebe que la longitud del teléfono sea de 9 contando el separador");
+                pedirTelefono();
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Ingrese un valor.");
+            pedirTelefono();
+        }
+        return "";
     }
 
     public int pedirCantDias(){
@@ -107,10 +148,9 @@ public class EntradaDatos {
         int op = 0;
         try {
             op = Integer.parseInt(scan.nextLine().trim());
-            if(op>5){clean();System.out.println("Por favor ingrese un número entre 1 y 5!"); pedirCantDias();}
+            if(op>5){System.out.println("Por favor ingrese un número entre 1 y 5!"); pedirCantDias();}
             return op;
         } catch (NullPointerException | NumberFormatException e) {
-            clean();
             System.out.println("Ingrese una opción válida!!");
             pedirCantDias();
         }
@@ -130,7 +170,8 @@ public class EntradaDatos {
                                 "\n5. Viernes");
         int op = 0;
         try {
-            op = Integer.parseInt(scan.nextLine().trim());
+            String opString = scan.nextLine().trim();
+            op = Integer.parseInt(opString);
             return op;
         } catch (NullPointerException | NumberFormatException e) {
             System.out.println("Ingrese una opción válida!!");
@@ -140,7 +181,7 @@ public class EntradaDatos {
     }
 
     public int menu(){
-        System.out.println("Menú: "+
+        System.out.println("\nMenú: "+
                                 "\n1. Crear y asignar curso al salón"+
                                 "\n2. Buscar curso"+
                                 "\n3. Eliminar curso"+
@@ -161,14 +202,6 @@ public class EntradaDatos {
         return op;
     }
 
-    public void clean(){
-        Process proces;
-        try {
-            proces = new ProcessBuilder("cmd","/c","cls").inheritIO().start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     public int buscarDia(){
         System.out.println("Ingrese el número del día en el que el curso se imparte: "+
                                     "\n1. Lunes"+
@@ -201,7 +234,7 @@ public class EntradaDatos {
             int opcion = Integer.parseInt(opcioString);
             if(opcion == 1){
                 System.out.println("¿Cuál es el nuevo día?");
-                diaIndex = buscarDia();
+                diaIndex = buscarDia()+1;
                 return diaIndex;
             }else{return -1;}
         } catch (NullPointerException | NumberFormatException e) {

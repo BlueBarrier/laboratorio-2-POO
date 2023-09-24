@@ -17,50 +17,42 @@ public class Asignador {
         Horario horario = new Horario(); // creación horario
         boolean out = false;
         do { // do-while para recursividad del menú
+
             switch(entrada.menu()){
                 case 1:
-                    entrada.clean();
                     horario.asignar();
                     break; 
                 case 2:
-                    entrada.clean();
                     horario.buscarCurso();
                     break; 
                 case 3: 
-                    entrada.clean();
                     // eliminar curso
                     horario.eliminarCurso();
                     break;
-                case 4: 
-                    entrada.clean();
+                case 4:                     
                     // cambiar horario
                     horario.cambiarHorario();
                     break;
                 case 5: 
-                    entrada.clean();
                     // buscar profesor encargado por horario y día
                     horario.mostrarProfesor();
                     break;
                 case 6:
-                    entrada.clean();
                     // mostrar días en los que el profesor cuida el salón
                     horario.mostrarEncargadoXDias();
                     break; 
                 case 7:
-                    entrada.clean();
                     // mostrar el % de responsabilidad del profesor y que días cuida
                     horario.encargadoStats();
                     break; 
                 case 8:
-                    entrada.clean();
                     // nuevo semestre, limpiar la lista
                     horario.nuevoSemestre();
                     break; 
                 case 9:
-                    entrada.clean();
                     System.out.println("\nPROGRAMA TERMINADO");
                     out = true;
-                    break; 
+                    return;
                 default:
                     break; 
             }

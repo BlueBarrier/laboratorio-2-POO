@@ -28,7 +28,12 @@ public class Horario {
          */
 
         // pedir código y verificar si ya existe un curso con ese código
-        entrada.clean(); // limpiar pantalla
+        horario.add(0, lunes);
+        horario.add(0, martes);
+        horario.add(0, miercoles);
+        horario.add(0, jueves);
+        horario.add(0, viernes);
+
         String codigo = entrada.pedirCodigo();
         try {
             for(ArrayList<Curso> i: horario){
@@ -66,6 +71,7 @@ public class Horario {
                             if(comprobarSolapar(horarioCurso, periodosCurso, 0)){ // llama a la función para comprobar disponibilidad
                                 Curso curso = new Curso(nombreCurso, codigo, horarioCurso, periodosCurso, cantEstudiantes,0 ,profesor); // crea un curso
                                 horario.get(0).add(curso); // añade un curso a la lista
+                                System.out.println("Curso añadido");
                                 out = true;
                             }
                         } while (!out);
@@ -97,6 +103,7 @@ public class Horario {
                             if(comprobarSolapar(horarioCurso, periodosCurso, 1)){
                                 Curso curso = new Curso(nombreCurso, codigo, horarioCurso, periodosCurso, cantEstudiantes, 1, profesor);
                                 horario.get(1).add(curso);
+                                System.out.println("Curso añadido");
                                 out = true;
                             }
                         } while (!out);
@@ -128,6 +135,7 @@ public class Horario {
                             if(comprobarSolapar(horarioCurso, periodosCurso, 2)){
                                 Curso curso = new Curso(nombreCurso, codigo, horarioCurso, periodosCurso, cantEstudiantes, 2, profesor);
                                 horario.get(2).add(curso);
+                                System.out.println("Curso añadido");
                                 out = true;
                             }
                         } while (!out);
@@ -159,6 +167,7 @@ public class Horario {
                             if(comprobarSolapar(horarioCurso, periodosCurso, 3)){
                                 Curso curso = new Curso(nombreCurso, codigo, horarioCurso, periodosCurso, cantEstudiantes, 3, profesor);
                                 horario.get(3).add(curso);
+                                System.out.println("Curso añadido");
                                 out = true;
                             }
                         } while (!out);
@@ -190,6 +199,7 @@ public class Horario {
                             if(comprobarSolapar(horarioCurso, periodosCurso, 4)){
                                 Curso curso = new Curso(nombreCurso, codigo, horarioCurso, periodosCurso, cantEstudiantes, 4, profesor);
                                 horario.get(4).add(curso);
+                                System.out.println("Curso añadido");
                                 out = true;
                             }
                         } while (!out);
@@ -214,7 +224,6 @@ public class Horario {
                     break;
             }
         }
-
     }
     public Curso buscarCurso(){
         /**
@@ -239,6 +248,7 @@ public class Horario {
          */
         Curso cursoCambiar = buscarCurso(); // buscar curso
         if (cursoCambiar != null) { // comprobar que no este vació
+            System.out.println("\nIngrese los nuevos datos: ");
             int nuevaHora = entrada.pedirHorario(); // pedir horario nuevo
             int nuevoIndex = entrada.preguntarCambioDia(); // preguntar si deseea cambiar de día
             if(nuevoIndex == -1){
@@ -264,7 +274,7 @@ public class Horario {
         Curso eliminarCurso = buscarCurso(); // busca y asigna el curso del usuario
         if (eliminarCurso != null) { // si el curso no esta vació
             horario.get(eliminarCurso.getDiaIndex()).remove(eliminarCurso); // remueve el curso con el indice del día
-            System.out.println("Curso eliminado"); // print para mostrar al usuario que el curso se elimino
+            System.out.println("CURSO ELIMINADO"); // print para mostrar al usuario que el curso se elimino
         }
     }
     public void nuevoSemestre(){
@@ -287,7 +297,7 @@ public class Horario {
         /*
          * Función que busca un curso en un horario  y mostar el profesor encargado
          */
-        System.out.println("Ingrese los datos del horario a buscar:");
+        System.out.println("Ingrese los datos del horario a buscar");
         Curso cursoProfesor = buscarCurso(); // busca el curso en ese horario 
         if (cursoProfesor != null) {
             System.out.println( // muestra al profesor de ese horario
@@ -314,7 +324,6 @@ public class Horario {
             }
         }
         System.out.println("Profesores disponibles para buscar: "); 
-        System.out.println("\n");
         for (String profesor : profesores) { // muestra los profesores disponibles
             System.out.println("Profesor/a: "+profesor);
         }
@@ -323,7 +332,7 @@ public class Horario {
             // recopilar cursos
             for (ArrayList<Curso> busquedaDia : horario) { // itera por día
                 for (Curso busquedaCurso : busquedaDia) { // itera por curso
-                    if (busquedaCurso.getProfesor().getNombre().equals(buscarProfesor)) {
+                    if (busquedaCurso.getProfesor().getNombre().equalsIgnoreCase(buscarProfesor)) {
                         if (!diasProfesor.contains(dias(busquedaCurso.getDiaIndex()))) {
                             diasProfesor.add(dias(busquedaCurso.getDiaIndex())); // si encuentra una coincidencia entonces agrega el día si no esta repetido
                         }
@@ -355,7 +364,7 @@ public class Horario {
         /*
          * Función para mostrar las estadísticas de cada profesor en relación a la responsabilidad que conlleva
          */
-        float horasTotales = (21-7)*5;  // posibles horas de todo el horario (hora final - hora inicial del salón)* la cantidad de días
+        double horasTotales = (21-7)*5;  // posibles horas de todo el horario (hora final - hora inicial del salón)* la cantidad de días
         ArrayList<String> profesoStrings = new ArrayList<>(); // lista para guardar los profesores
 
         // iteración para recopilar datos
@@ -371,15 +380,15 @@ public class Horario {
         System.out.println("HORAS TOTALES POR HORARIO: "+horasTotales);
         System.out.println("Porcentajes por profesor: ");
         for (String profesor : profesoStrings) { // iterar cada profesor de la lista para obtener la cantidad de horas que tienen
-            float horasProfesor=0;
+            double horasProfesor=0;
             for (ArrayList<Curso> dArrayList : horario) {
                 for (Curso dCurso : dArrayList) {
-                    if (dCurso.getNombre().equals(profesor)) {
+                    if (dCurso.getNombre().equalsIgnoreCase(profesor)) {
                         horasProfesor += dCurso.getCantPeriodos(); // sumar a la variable las horas por curso
                     }
                 }
             }
-            float porcentaje = horasProfesor/horasTotales *100; // porcentaje 
+            double porcentaje = horasProfesor/horasTotales *100; // porcentaje 
             System.out.println("\nProfesor: "+profesor+" % de responsabilidad = "+ porcentaje+"%");
         }
         
