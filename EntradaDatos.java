@@ -13,23 +13,23 @@ import java.util.Scanner;
 public class EntradaDatos {
     private Scanner scan = new Scanner(System.in); // importar y crear objeto scanner
 
+    /**
+     * método que pide el nombre del usuario
+     * 
+     * @return nombre -String- nombre del usuario
+     */
     public String pedirNombre(){ // pedir el nombre del curso
-        /*
-         * método que pide el nombre del usuario
-         * 
-         * @return nombre -String- nombre del usuario
-         */
         System.out.println("\nIngrese el nombre del curso que se impartirá: ");
         String nombre = scan.nextLine();
         return nombre;
     }
 
+    /**
+     * método que pide el código del curso
+     * 
+     * @return codigo -String- código del curso
+     */
     public String pedirCodigo(){
-        /*
-         * método que pide el código del curso
-         * 
-         * @return codigo -String- código del curso
-         */
         System.out.println("Ingrese el código del curso (Ej.: CC2008)[máx 6 caractéres]: ");
         String codigo = "";
         try {
@@ -41,12 +41,12 @@ public class EntradaDatos {
         return codigo;
     }
 
+    /**
+     * método que pide la hora en la que se imparte el curso
+     * 
+     * @return hora -int- hora del curso
+     */
     public int pedirHorario(){
-        /*
-         * método que pide la hora en la que se imparte el curso
-         * 
-         * @return hora -int- hora del curso
-         */
         System.out.println("Ingrese la hora de inicio del curso (Salón disponible de 07 a 21 horas) (Ej.: 13, 10, 07): ");
         String horario = scan.nextLine().trim();
         int hora = 0;
@@ -63,12 +63,12 @@ public class EntradaDatos {
         return hora;
     }
 
+    /**
+     *  método que pide la cantidad de periodos que dura la clase
+     * 
+     * @return periodos -int- periodos
+     */
     public int pedirPeriodos(){
-        /*
-         *  método que pide la cantidad de periodos que dura la clase
-         * 
-         * @return periodos -int- periodos
-         */
         System.out.println("¿Cuántos periodos (de 60 min) dura la clase? (Ej.: 2): ");
         int periodos = 0;
         try {
@@ -83,14 +83,14 @@ public class EntradaDatos {
         return periodos;
     }
 
+    /**
+     *  método que pide la cantidad de estudiantes asignados al curso
+     * arroja una advertencia si excede la capacidad
+     * 
+     * @param capacidad -int- capacidad permitida en el salón
+     * @return estudiantes -int- estudiantes asignados
+     */
     public int pedirEstudiantes(int capacidad){
-        /*
-         *  método que pide la cantidad de estudiantes asignados al curso
-         * arroja una advertencia si excede la capacidad
-         * 
-         * @param capacidad -int- capacidad permitida en el salón
-         * @return estudiantes -int- estudiantes asignados
-         */
         int capacity = capacidad;
         System.out.println("¿Cuántos estudiantes reciben el curso?: ");
         int estudiantes = 0;
@@ -112,12 +112,12 @@ public class EntradaDatos {
         return estudiantes;
     }
 
+    /**
+     *  método que pide el nombre del profesor encargado
+     * 
+     * @return nombre -String- 
+     */
     public String pedirNombreProfesor(){
-        /*
-         *  método que pide el nombre del profesor encargado
-         * 
-         * @return nombre -String- 
-         */
         System.out.println("Ingrese el nombre del profesor encargado del curso: ");
         try {
             String nombre = scan.nextLine().trim();
@@ -129,12 +129,12 @@ public class EntradaDatos {
         return "";
     }
 
+    /**
+     * método que pide el carné del profesor, no puede ser mayor a 
+     *  6 caractéres
+     * @return carne -int - 
+     */
     public String pedirCarne(){
-        /*
-         * método que pide el carné del profesor, no puede ser mayor a 
-         *  6 caractéres
-         * @return carne -int - 
-         */
         System.out.println("Ingrese el carné del profesor encargado del curso: ");
         try {
             String carne = scan.nextLine();
@@ -147,13 +147,13 @@ public class EntradaDatos {
         return "";
     }
 
+    /**
+     * método que pide el correo del profesor, el correo debe ser un correo válido para la institución
+     * debe incluir @uvg.edu.gt
+     * 
+     * @return correo -String- correo del profesor
+     */
     public String pedirCorreo(){
-        /*
-         * método que pide el correo del profesor, el correo debe ser un correo válido para la institución
-         * debe incluir @uvg.edu.gt
-         * 
-         * @return correo -String- correo del profesor
-         */
         System.out.println("Ingrese el correo del profesor encargado del curso (Ej.: profesor@uvg.edu.gt): ");
         try {
             String correo = scan.nextLine().trim().toLowerCase();
@@ -170,13 +170,13 @@ public class EntradaDatos {
         return "";
     }
 
+    /**
+     * método que pide al usuario el número del teléfono del profesor,
+     * la String ingresada debe tener un - para que sea válida
+     * 
+     * @return telefono -String- teléfono del profesor
+     */
     public String pedirTelefono(){
-        /*
-         * método que pide al usuario el número del teléfono del profesor,
-         * la String ingresada debe tener un - para que sea válida
-         * 
-         * @return telefono -String- teléfono del profesor
-         */
         System.out.println("Ingrese el número de teléfono del profesor (Ej.: 1234-5678): ");
         try {
             String telefono = scan.nextLine().trim().toLowerCase();
@@ -193,13 +193,13 @@ public class EntradaDatos {
         return "";
     }
 
+    /**
+     * método que pide la cantidad de días que el curso se impartirá
+     * debe ser menor a 5 y mayor a 0
+     * 
+     * @return op -int- cantidad de días de lunes a viernes
+     */
     public int pedirCantDias(){
-        /*
-         * método que pide la cantidad de días que el curso se impartirá
-         * debe ser menor a 5 y mayor a 0
-         * 
-         * @return op -int- cantidad de días de lunes a viernes
-         */
         System.out.println("\n¿Cuántos días se impartirá el curso? (1-5): ");
         int op = 0;
         try {
@@ -213,13 +213,13 @@ public class EntradaDatos {
         return op;
     }
 
+    /**
+     * método que pide el día que se impartirá el usuario
+     * 
+     * @return op -int- indice de la lista del día 
+     * @param contador -int- contador para saber cuántas veces se van agregando curso
+     */
     public int pedirDia(int contador){
-        /*
-         * método que pide el día que se impartirá el usuario
-         * 
-         * @return op -int- indice de la lista del día 
-         * @param contador -int- contador para saber cuántas veces se van agregando curso
-         */
         int cont = contador;
         if (cont>0){System.out.println("\n¿Qué otro día se impartira el curso?");}else{
             System.out.println("\n¿Qué día se impartirá el curso? (ingrese el número): ");
@@ -242,12 +242,12 @@ public class EntradaDatos {
         return op;
     }
 
+    /**
+     * método que arroja el menú para que el usuario ingrese una opción
+     * 
+     * @return op -int- opción ingresada por el usuario
+     */
     public int menu(){
-        /*
-         * método que arroja el menú para que el usuario ingrese una opción
-         * 
-         * @return op -int- opción ingresada por el usuario
-         */
         System.out.println("\nMenú: "+
                                 "\n1. Crear y asignar curso al salón"+
                                 "\n2. Buscar curso"+
@@ -269,12 +269,12 @@ public class EntradaDatos {
         return op;
     }
 
+    /**
+     * método que pide una opción según el día que el usuario elija 
+     * 
+     * @return op -int- regresa el indice del día que eligió el usuario
+     */
     public int buscarDia(){
-        /*
-         * método que pide una opción según el día que el usuario elija 
-         * 
-         * @return op -int- regresa el indice del día que eligió el usuario
-         */
         System.out.println("Ingrese el número del día en el que el curso se imparte: "+
                                     "\n1. Lunes"+
                                     "\n2. Martes"+
@@ -296,13 +296,13 @@ public class EntradaDatos {
         return op;
     }
 
+    /**
+     * método que pregunta al usuario sí desea cambiar el día 
+     * si sí, entonces llama a la función para buscar el día y regresa el indice del día elegido
+     * 
+     * @return diaIndex -int- indice del día 
+     */
     public int preguntarCambioDia(){
-        /*
-         * método que pregunta al usuario sí desea cambiar el día 
-         * si sí, entonces llama a la función para buscar el día y regresa el indice del día elegido
-         * 
-         * @return diaIndex -int- indice del día 
-         */
         int diaIndex = 0;
         System.out.println("¿Desea cambiar de día?"+
                                 "\n1. Sí"+
@@ -322,12 +322,12 @@ public class EntradaDatos {
         return diaIndex;
     }
 
+    /**
+     * método que confirma con el usuario si desea o no un nuevo semestre
+     * 
+     * @return opcion -int- sí(1) o no(2)
+     */
     public int siNo(){
-        /*
-         * método que confirma con el usuario si desea o no un nuevo semestre
-         * 
-         * @return opcion -int- sí(1) o no(2)
-         */
         System.out.println("¿Esta seguro de crear un nuevo semestre?"+
                                 "\n1. Sí"+
                                 "\n2. No");

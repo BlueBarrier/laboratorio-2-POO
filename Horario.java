@@ -225,12 +225,12 @@ public class Horario {
             }
         }
     }
+    /**
+     * Función para buscar un curso dependiendo del horario(int) que ingrese el usuario
+     * 
+     * @return: Curso curso - curso que encuentra el programa
+     */
     public Curso buscarCurso(){
-        /**
-         * Función para buscar un curso dependiendo del horario(int) que ingrese el usuario
-         * 
-         * @return: Curso curso - curso que encuentra el programa
-         */
         Curso curso = null; // inicializa lista
         int dia = entrada.buscarDia(); // pide el indice del día al usuario
         int hora = entrada.pedirHorario(); // pide la hora al usuario
@@ -242,10 +242,10 @@ public class Horario {
         }
         return curso;
     }
+    /**
+     * Función para cambiar horario de un curso verificando que el nuevo horario este disponible
+     */
     public void cambiarHorario(){
-        /**
-         * Función para cambiar horario de un curso verificando que el nuevo horario este disponible
-         */
         Curso cursoCambiar = buscarCurso(); // buscar curso
         if (cursoCambiar != null) { // comprobar que no este vació
             System.out.println("\nIngrese los nuevos datos: ");
@@ -307,12 +307,12 @@ public class Horario {
                             "\n Periodos: " + cursoProfesor.getCantPeriodos());
         }
     }
+    /**
+     * Función que busca los horarios dentro de todo el horario los cuales imparte un profesor
+     * 
+     * @param profesor - String - nombre del profesor 
+     */
     public void mostrarEncargadoXDias(){
-        /*
-         * Función que busca los horarios dentro de todo el horario los cuales imparte un profesor
-         * 
-         * @param profesor - String - nombre del profesor 
-         */
         ArrayList<String> profesores = new ArrayList<>(); // lista para almacenar los nombre de los profesores disponibles
         ArrayList<String> diasProfesor = new ArrayList<>(); // lista para almacenar los días que imparte el profesor
         ArrayList<Curso> cursosProfesor = new ArrayList<>(); // lista de cursos que imparte un profesor
@@ -397,16 +397,16 @@ public class Horario {
 
 
     // función para verificar si dos cursos se solapan 
+    /**
+     * Función que verifica si el horario esta desocupado
+     * 
+     * @param hora -int- hora de inicio del curso
+     * @param periodos - int - periodos que dura el curso
+     * @param indice - int - indice de la lista dentro de horario para buscar la disponibilidad  
+     * 
+     * @return boolean - falso si el horario no esta disponible y verdadero si esta disponible
+     */
     public boolean comprobarSolapar(int hora, int periodos, int indice){
-        /*
-         * Función que verifica si el horario esta desocupado
-         * 
-         * @param hora -int- hora de inicio del curso
-         * @param periodos - int - periodos que dura el curso
-         * @param indice - int - indice de la lista dentro de horario para buscar la disponibilidad  
-         * 
-         * @return boolean - falso si el horario no esta disponible y verdadero si esta disponible
-         */
         int finalCurso = hora + periodos; // hora en la que el curso finaliza
         int comprobanteInicia; // creación variable para comprobar iniciación de cursos
         int comprobanteFinaliza; // creación variable para comprobar finalización de cursos
@@ -425,13 +425,13 @@ public class Horario {
         return true; // retorna true si esta disponible
     }
 
+    /**
+     * Función para regresar el día en String dependiendo el indice
+     * @param int opcion - indice del día
+     * 
+     * @return String día - día dependiendo un indice
+     */
     public String dias(int opcion){
-        /*
-         * Función para regresar el día en String dependiendo el indice
-         * @param int opcion - indice del día
-         * 
-         * @ return String día - día dependiendo un indice
-         */
         switch (opcion) {
             case 1:
                 return "lunes";
