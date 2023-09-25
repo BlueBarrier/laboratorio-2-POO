@@ -350,7 +350,7 @@ public class Horario {
             for (Curso cursoCurso : cursosProfesor) {
                 System.out.println("Curso: "+cursoCurso.getNombre()+
                                     "\n Código: "+cursoCurso.getCodigo()+
-                                    "\n Día: " +dias(cursoCurso.getDiaIndex())+
+                                    "\n Día: " +dias(cursoCurso.getDiaIndex()+1)+
                                     "\n Horario: "+cursoCurso.getHorario()+" horas"+
                                     "\n Periodos: "+cursoCurso.getCantPeriodos()+
                                     "\n Estudiantes: "+cursoCurso.getCantEstudiantes());
@@ -383,7 +383,7 @@ public class Horario {
             double horasProfesor=0;
             for (ArrayList<Curso> dArrayList : horario) {
                 for (Curso dCurso : dArrayList) {
-                    if (dCurso.getNombre().equalsIgnoreCase(profesor)) {
+                    if (dCurso.getProfesor().getNombre().equalsIgnoreCase(profesor)) {
                         horasProfesor += dCurso.getCantPeriodos(); // sumar a la variable las horas por curso
                     }
                 }

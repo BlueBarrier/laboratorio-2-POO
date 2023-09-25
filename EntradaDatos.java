@@ -120,7 +120,7 @@ public class EntradaDatos {
     public String pedirNombreProfesor(){
         System.out.println("Ingrese el nombre del profesor encargado del curso: ");
         try {
-            String nombre = scan.nextLine().trim();
+            String nombre = scan.nextLine().trim().toLowerCase();
             return nombre;
         } catch (NullPointerException e) {
             System.out.println("Ingrese un valor");
